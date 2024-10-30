@@ -52,6 +52,7 @@ When installation completes, log into the OpenShift web console.
 
 ```code block
 
+
 kind: CiliumConfig
 apiVersion: cilium.io/v1alpha1
 metadata:
@@ -83,6 +84,13 @@ spec:
   # Enable Hubble for visibility and troubleshooting (optional)
   hubble:
     enabled: true
+    tls:
+     auto:
+       enabled: false
+     server:
+       cert: ""
+       key: ""
+       ca: ""
     ui: true  # Enable Hubble UI (optional)
     metrics:
       - dns
