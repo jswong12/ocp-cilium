@@ -48,4 +48,60 @@ When installation completes, log into the OpenShift web console.
 1. Navigate to the OperatorHub
 2. Search for Cilium
 3. Install the Cilium CNI onto the openshift-network-operator namespace
-4. Configure Cilium
+4. Configure Cilium (Below is a sample configuration yaml file)
+
+```code block
+
+kind: CiliumConfig
+apiVersion: cilium.io/v1alpha1
+metadata:
+  name: cilium-openshift-default
+  namespace: openshift-network-operator
+spec:
+  # Enable the CNI plugin
+  cni:
+    enabled: true
+    customConf: true  
+
+  # Define Cluster and Service Networks to match OpenShift
+  cluster:
+    name: # name of the openshift cluster
+    pool:
+      podCIDR: "10.128.0.0/14"      # Pod network CIDR
+      serviceCIDR: "172.30.0.0/16"  # Service network CIDR
+
+  # Enable specific configurations for OpenShift compatibility
+  endpointHealthChecking: true
+  hostReachableServices: true
+
+  # Additional Cilium features and configurations
+  ipv4:
+    enabled: true  # Enable IPv4 support (required for OpenShift)
+  ipv6:
+    enabled: false # Disable IPv6 if not required
+
+  # Enable Hubble for visibility and troubleshooting (optional)
+  hubble:
+    enabled: true
+    ui: true  # Enable Hubble UI (optional)
+    metrics:
+      - dns
+      - drop
+      - tcp
+      - flow
+      - icmp
+      - http
+
+  # Cilium Network Policies (CNP) and Network Policy enforcement
+  policyEnforcementMode: default
+
+  # Enable BPF (Berkeley Packet Filter) options for better performance
+  bpf:
+    nodePort:
+      enabled: true
+    preallocation: true
+
+  # Configure MTU based on your network infrastructure
+  mtu: 1400
+
+```
