@@ -17,7 +17,7 @@ Note:  Red Hat does not currently support a third party CNI.  This is not an off
 Complete all the fields to continue the installation.
 
 ## Custom Manifests
-Currently, the Assisted Installer will deploy the RH OVN CNI by default.  There is not an option to disable this during the installation.  To override this, a custom manifest will need to be added to both disable the OVN and add Cilium or another third party CNI as the default.
+Currently, the Assisted Installer will deploy the Red Hat OVN CNI by default.  There is not an option to disable this during the installation.  To override this, a custom manifest will need to be added to disable the OVN.  Once disabled, Cilium can be added after the deployment either through the Operator Hub or by Helm chart.  
 
 ## Disable OVN
 Below is an example manifest to disable the default network provider.
