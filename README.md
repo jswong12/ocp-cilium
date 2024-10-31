@@ -35,7 +35,7 @@ spec:
   serviceNetwork:
     - 172.30.0.0/16
   defaultNetwork:
-    type: None  # Disable OVNKubernetes
+    type: None  # Disable OVN
     
 ```
 Add this as the first custom manifest.  The file name can be anything.  The name 99-cni-configuration.yaml was used for this example.  
