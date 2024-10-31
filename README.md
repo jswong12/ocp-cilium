@@ -48,7 +48,10 @@ When installation completes, log into the OpenShift web console.
 1. Navigate to the OperatorHub
 2. Search for Cilium
 3. Install the Cilium CNI onto the openshift-network-operator namespace
-4. Configure Cilium (Below is a sample configuration yaml file)
+4. Navigate to "Installed Operators"
+5. Select "Cilium"
+6. Navigate to the "CiliumConfig" tab
+7. Configure Cilium by adding a config file (Below is a sample configuration yaml file)
 
 ```code block
 
